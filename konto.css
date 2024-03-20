@@ -5,9 +5,10 @@
 }
 
 #userInfo {
-    width: 70%;
-    height: 70%;
+    width: 60%;
+    height: 60%;
     border: 1px solid black;
+    padding: 5%;
 }
 
 .info {
@@ -15,4 +16,11 @@
     grid-template-columns: 25% 75%;
     grid-template-rows: 100%;
     grid-template-areas: 2;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }

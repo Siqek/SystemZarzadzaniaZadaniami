@@ -8,7 +8,7 @@
         navigateTo('./');
     }
 
-    if (isset($_POST["newUsername"]))
+    if (isset($_POST["newUsername"]) && !empty($_POST["newUsername"]))
     {
         $conn = newConn();
 
@@ -19,11 +19,26 @@
 
         if (mysqli_query($conn, $sql))
             $_SESSION["username"] = $newUsername;
-        else
-            echo mysqli_error($conn);
 
         unset($_POST["edit_username"]);
         unset($_POST["newUsername"]);
+
+        mysqli_close($conn);
+    }
+
+    if (isset($_POST["newPassword"]) && !empty($_POST["newPassword"]))
+    {
+        $conn = newConn();
+
+        $newPass = szyfrujPass($_POST["newPassword"]);
+        $login = $_SESSION["login"];
+
+        $sql = "UPDATE `users` SET `password`='$newPass' WHERE login = '$login'";
+
+        mysqli_query($conn, $sql);
+
+        unset($_POST["edit_pass"]);
+        unset($_POST["newPass"]);
 
         mysqli_close($conn);
     }
@@ -63,6 +78,22 @@
                     <input type="submit" name="edit_username" value="<?php echo (isset($_POST["edit_username"])) ? "Zapisz" : "Edytuj";?>">
                 </form>
             </div>
+            <div class="info">
+                <p>Hasło: </p>
+                <form action="./konto.php" method="POST">
+                    <?php
+                        if (isset($_POST["edit_pass"]))
+                        {
+                            echo "<input type='password' value='' name='newPassword'>";
+                        }
+                        else
+                        {
+                            echo "<p>****</p>";
+                        }
+                    ?>
+                    <input type="submit" name="edit_pass" value="<?php echo (isset($_POST["edit_pass"])) ? "Zapisz" : "Zmień hasło";?>">
+                </form>
+            </div>   
         </div>
     </div>
 </body>
