@@ -3,8 +3,7 @@
 
     include "./functions.php";
 
-    if (!isLogged()
-        || !isLoggedAs('admin'))
+    if (!isLogged())
     {
         navigateTo('./');
     }

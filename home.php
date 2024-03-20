@@ -20,6 +20,5 @@
 <body>
     <?php include "./menu.php"; ?>
     HOME
-    <a href="./">aa</a>
 </body>
 </html>

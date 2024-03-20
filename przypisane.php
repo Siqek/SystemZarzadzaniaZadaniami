@@ -4,7 +4,7 @@
     include "./functions.php";
 
     if (!isLogged()
-        || !isLoggedAs('admin'))
+        || !(isLoggedAs('pracownik') || isLoggedAs('admin')))
     {
         navigateTo('./');
     }

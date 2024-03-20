@@ -1,7 +1,10 @@
 <?php
+    if ($_SERVER['PHP_SELF'] == '/functions.php')
+        navigateTo('./');
+
     function newConn ()
     {
-        $host = '192.168.15.182';
+        $host = '192.168.43.204';
         $user = 'root';
         $pass = 'zaq1';
         $db = 'szz';

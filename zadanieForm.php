@@ -12,7 +12,19 @@
         && !empty($_POST["title"])
         && !empty($_POST["opis"]))
     {
+        $title = $_POST["title"];
+        $opis = $_POST["opis"];
+        $user = $_COOKIE["login"];
+
         $conn = newConn();
+
+        $sql = "INSERT INTO `zadania`(`tytul`, `opis`, `status`, `user_login`, `pracownik_login`, `data`, `archiwizowane`)
+            VALUES ('$title','$opis', 1,'$user', NULL, CURRENT_DATE, false)";
+
+        if (mysqli_query($conn, $sql))
+        {
+            
+        }
     }
 ?>
 <!DOCTYPE html>
