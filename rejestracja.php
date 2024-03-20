@@ -1,8 +1,12 @@
 <?php
     session_start();
 
-    include "./createConn.php";
     include "./functions.php";
+
+    if (isLogged())
+    {
+        navigateTo('./home.php');
+    }
 
     if (isset($_POST["login"], $_POST["username"], $_POST["password"]) 
         && !empty($_POST["login"])
@@ -19,14 +23,15 @@
         
         if (mysqli_query($conn, $sql))
         {
-            echo "konto pomyślnie utworzone";
-
-            navigateToAfterTime('./home.php', 1000);
+            setSessionUserVars($login, $username, 'user');
+            navigateTo('./home.php');
         }
         else
         {
             echo "błąd";
         }
+
+        mysqli_close($conn);
     }
 ?>
 <!DOCTYPE html>
@@ -35,6 +40,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SZZ</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <form action="./rejestracja.php" method="POST">
@@ -43,5 +49,6 @@
         <input type="password" name="password" placeholder="hasło">
         <input type="submit" value="Utwórz konto">
     </form>
+    <a href="./">zaloguj się</a>
 </body>
 </html>

@@ -1,0 +1,31 @@
+body {
+    display: grid;
+    grid-template-columns: 15% 85%;
+    grid-template-rows: 100%;
+    grid-template-areas: "menu main";
+
+    height: 100vh;
+    width: 100%;
+
+    margin: 0px;
+}
+
+#menu {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 20px;
+
+    height: 100%;
+    width: 100%;
+}
+
+#menu > a {
+    width: 80%;
+    font-weight: bold;
+    font-size: 120%;
+    color: #000000ff;
+
+    border: 1px solid grey;
+}
