@@ -14,7 +14,7 @@
     {
         $title = $_POST["title"];
         $opis = $_POST["opis"];
-        $user = $_COOKIE["login"];
+        $user = $_SESSION["login"];
 
         $conn = newConn();
 
