@@ -8,7 +8,12 @@
         navigateTo('./');
     }
 
-    if (isset($_POST["newUsername"]) && !empty($_POST["newUsername"]))
+    if (isset($_POST['cancel_username']))
+    {
+        unset($_POST["edit_username"]);
+        unset($_POST["newUsername"]);
+    }
+    else if (isset($_POST["newUsername"]) && !empty($_POST["newUsername"]))
     {
         $conn = newConn();
 
@@ -80,7 +85,15 @@
                             echo "<p>" . $_SESSION["username"] . "</p>";
                         }
                     ?>
-                    <input type="submit" name="edit_username" value="<?php echo (isset($_POST["edit_username"])) ? "Zapisz" : "Edytuj";?>">
+                    <span>
+                        <input type="submit" name="edit_username" value="<?php echo (isset($_POST["edit_username"])) ? "Zapisz" : "Edytuj";?>">
+                        <?php
+                            if (isset($_POST["edit_username"]))
+                            {
+                                echo "<input type='submit' value='Anuluj' name='cancel_username'>";
+                            }
+                        ?>
+                    </span>
                 </form>
             </div>
             <div class="info">

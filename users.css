@@ -13,3 +13,7 @@ td, th {
     overflow: auto;
     padding-top: 40px;
 }
+
+.noBorder {
+    border: 0px;
+}
