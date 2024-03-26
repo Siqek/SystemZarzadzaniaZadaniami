@@ -2,6 +2,8 @@
     <?php
         if (isLogged())
         {
+            echo "<a href='./home.php'>home</a>";
+
             echo "<a href='./zadanieForm.php'>dodaj zadanie</a>";
 
             echo "<a href='./listaZadan.php'>zadania</a>";

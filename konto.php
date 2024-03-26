@@ -26,7 +26,12 @@
         mysqli_close($conn);
     }
 
-    if (isset($_POST["newPassword"]) && !empty($_POST["newPassword"]))
+    if (isset($_POST["cancel"]))
+    {
+        unset($_POST["edit_pass"]);
+        unset($_POST["newPass"]);
+    }
+    else if (isset($_POST["newPassword"]) && !empty($_POST["newPassword"]))
     {
         $conn = newConn();
 
@@ -80,7 +85,7 @@
             </div>
             <div class="info">
                 <p>Hasło: </p>
-                <form action="./konto.php" method="POST">
+                 <form action="./konto.php" method="POST">
                     <?php
                         if (isset($_POST["edit_pass"]))
                         {
@@ -91,7 +96,15 @@
                             echo "<p>****</p>";
                         }
                     ?>
-                    <input type="submit" name="edit_pass" value="<?php echo (isset($_POST["edit_pass"])) ? "Zapisz" : "Zmień hasło";?>">
+                    <span>
+                        <input type="submit" name="edit_pass" value="<?php echo (isset($_POST["edit_pass"])) ? "Zapisz" : "Zmień hasło";?>">
+                        <?php
+                            if (isset($_POST["edit_pass"]))
+                            {
+                                echo "<input type='submit' value='Anuluj' name='cancel'>";
+                            }
+                        ?>
+                    </span>
                 </form>
             </div>   
         </div>

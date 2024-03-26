@@ -1,0 +1,15 @@
+td, th {
+    border: 1px solid black;
+    height: 30px;
+    min-width: 120px;
+}
+
+#users {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    height: calc(100% - 40px);
+
+    overflow: auto;
+    padding-top: 40px;
+}
