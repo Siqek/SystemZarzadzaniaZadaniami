@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Mar 25, 2024 at 03:17 PM
+-- Generation Time: Mar 27, 2024 at 09:09 AM
 -- Wersja serwera: 8.2.0
 -- Wersja PHP: 8.2.12
 
@@ -29,14 +29,14 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `statusy` (
   `id` int NOT NULL,
-  `status` varchar(25) NOT NULL
+  `nazwa` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `statusy`
 --
 
-INSERT INTO `statusy` (`id`, `status`) VALUES
+INSERT INTO `statusy` (`id`, `nazwa`) VALUES
 (1, 'nierozpoczęte'),
 (2, 'w trakcie'),
 (3, 'wykonane');
@@ -70,7 +70,7 @@ INSERT INTO `uprawnienia` (`id`, `nazwa`) VALUES
 CREATE TABLE `users` (
   `login` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
-  `password` varchar(32) NOT NULL,
+  `password` char(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `upr` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -81,6 +81,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`login`, `username`, `password`, `upr`) VALUES
 ('a', 'a', '0cc175b9c0f1b6a831c399e269772661', 1),
 ('admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', 3),
+('c', 'c', '4a8a08f09d37b73795649038408b5f33', 1),
 ('prac', 'pracownik', '598fe4e3dfb7a94fb94c1b0502ca3d1c', 2);
 
 -- --------------------------------------------------------
@@ -94,8 +95,8 @@ CREATE TABLE `zadania` (
   `tytul` text NOT NULL,
   `opis` text NOT NULL,
   `status` int NOT NULL,
-  `user_login` varchar(100) NOT NULL,
-  `pracownik_login` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `user` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `pracownik` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `data` date NOT NULL,
   `archiwizowane` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -104,8 +105,13 @@ CREATE TABLE `zadania` (
 -- Dumping data for table `zadania`
 --
 
-INSERT INTO `zadania` (`id`, `tytul`, `opis`, `status`, `user_login`, `pracownik_login`, `data`, `archiwizowane`) VALUES
-(2, 'test', 'bardzo długi opis', 1, '', NULL, '2024-03-20', 0);
+INSERT INTO `zadania` (`id`, `tytul`, `opis`, `status`, `user`, `pracownik`, `data`, `archiwizowane`) VALUES
+(2, 'test', 'bardzo długi opis', 1, 'a', 'prac', '2024-03-20', 0),
+(3, 'abc', 'abc', 1, 'admin', NULL, '2024-03-26', 0),
+(4, 'test', '2', 1, 'admin', 'prac', '2024-03-27', 0),
+(5, 'test', 'd', 1, 'c', NULL, '2024-03-27', 0),
+(6, 'test', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?', 1, 'admin', NULL, '2024-03-27', 0),
+(7, 'test', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?', 1, 'admin', 'prac', '2024-03-27', 0);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -155,7 +161,7 @@ ALTER TABLE `uprawnienia`
 -- AUTO_INCREMENT for table `zadania`
 --
 ALTER TABLE `zadania`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
