@@ -12,9 +12,19 @@
     {
         $conn = newConn();
 
-        $sql = "UPDATE `zadania` SET `pracownik`='" . $_SESSION["login"] . "' WHERE id = " . $_POST["zadanieID"];
+        if (isset($_POST["przypisz"]))
+        {
+            $sql = "UPDATE `zadania` SET `pracownik` = '" . $_SESSION["login"] . "' WHERE id = " . $_POST["zadanieID"];
+            
+            mysqli_query($conn, $sql);
+        }
+        else if (isset($_POST["archiwizuj"]))
+        {
+            $sql = "UPDATE `zadania` SET `archiwizowane` = true WHERE id = " . $_POST["zadanieID"];
 
-        mysqli_query($conn, $sql);
+            mysqli_query($conn, $sql);
+        }
+
 
         mysqli_close($conn);
     }
@@ -59,15 +69,22 @@
                                     <p>" . $row["opis"] . "</p>
                                 </div>
                             </div>
-                            <div class='tools'>
-                                <form action='listaZadan.php' method='POST'>";
+                            <div class='tools'>";
                                 if (empty($row["pracownik"]) && (isLoggedAs("pracownik") || isLoggedAs("admin")))
                                 {
-                                    echo "<input type='text' value='" . $row["id_zadania"] . "' name='zadanieID' hidden>";
-                                    echo "<input type='submit' value='Przypisz się'>";
+                                    echo "<form action='listaZadan.php' method='POST'>
+                                        <input type='text' value='" . $row["id_zadania"] . "' name='zadanieID' hidden>
+                                        <input type='submit' value='Przypisz się' name='przypisz'>
+                                    </form>";
                                 }
-                    echo        "</form>
-                            </div>
+                                if (isLoggedAs('admin'))
+                                {
+                                    echo "<form action='listaZadan.php' method='POST'>
+                                        <input type='text' value='" . $row["id_zadania"] . "' name='zadanieID' hidden>
+                                        <input type='submit' value='Archiwizuj' name='archiwizuj'>
+                                    </form>";
+                                }
+                    echo    "</div>
                         </span>";
                 }
             }

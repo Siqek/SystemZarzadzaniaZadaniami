@@ -53,6 +53,7 @@
     border: 1px solid black;
 
     display: flex;
+    flex-direction: row-reverse;
     justify-content: end;
     align-items: center;
     gap: 7px;
