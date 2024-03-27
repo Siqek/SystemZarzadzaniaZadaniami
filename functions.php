@@ -10,11 +10,8 @@
         $db = 'szz';
 
         $conn = mysqli_connect($host, $user, $pass, $db);
-
-        if (!$conn)
-            return false;
-        else
-            return $conn;
+      
+        return $conn;
     }
 
     function szyfrujPass($pass) 
@@ -43,18 +40,18 @@
 
     function setSessionUserVars($login, $username, $upr)
     {
-        $_SESSION["logged"] = true;
-        $_SESSION["login"] = $login;
-        $_SESSION["username"] = $username;
-        $_SESSION["upr"] = $upr;
+        $_SESSION["logged"]     = true;
+        $_SESSION["login"]      = $login;
+        $_SESSION["username"]   = $username;
+        $_SESSION["upr"]        = $upr;
     }
 
     function unsetSessionUserVars()
     {
-        $_SESSION["logged"] = false;
-        $_SESSION["login"] = NULL;
-        $_SESSION["username"] = NULL;
-        $_SESSION["upr"] = NULL;
+        $_SESSION["logged"]     = false;
+        $_SESSION["login"]      = NULL;
+        $_SESSION["username"]   = NULL;
+        $_SESSION["upr"]        = NULL;
     }
 
     function isLogged()

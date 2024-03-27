@@ -17,6 +17,16 @@
             echo "<a href='./konto.php'>konto</a>";
             
             echo "<a href='./logout.php'>wyloguj</a>";
+            
+            ///////////////////////////////////////////////////
+            //DEBUG
+            echo 
+                "<span>
+                    <p>DEBUG: </p>
+                    <p>" . $_SESSION["username"] . "</p>
+                    <p>" . $_SESSION["upr"] . "</p>
+                </span>";
+            ///////////////////////////////////////////////////
         }
     ?>
 </div>

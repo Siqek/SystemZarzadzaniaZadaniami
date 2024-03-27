@@ -16,6 +16,50 @@
 
 .zadanie {
     border: 1px solid black;
-    height: 200px;
     width: 400px;
+    padding: 12px;
+    height: 200px;
+
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 100px calc(100% - 100px);
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.info > h3, span > p, .info > p {
+    margin: 7px;
+}
+
+.zadanie > .opis {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.zadanie > .opis > p {
+    margin: 7px;
+}
+
+.tools {
+    height: 50px;
+    width: 412px;
+    padding: 6px;
+    border: 1px solid black;
+
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 7px;
+}
+
+.elem {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
