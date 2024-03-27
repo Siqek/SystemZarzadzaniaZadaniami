@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Mar 27, 2024 at 09:09 AM
+-- Generation Time: Mar 27, 2024 at 02:27 PM
 -- Wersja serwera: 8.2.0
 -- Wersja PHP: 8.2.12
 
@@ -106,12 +106,22 @@ CREATE TABLE `zadania` (
 --
 
 INSERT INTO `zadania` (`id`, `tytul`, `opis`, `status`, `user`, `pracownik`, `data`, `archiwizowane`) VALUES
-(2, 'test', 'bardzo długi opis', 1, 'a', 'prac', '2024-03-20', 0),
-(3, 'abc', 'abc', 1, 'admin', NULL, '2024-03-26', 0),
-(4, 'test', '2', 1, 'admin', 'prac', '2024-03-27', 0),
+(2, 'test', 'bardzo długi opis', 1, 'a', 'admin', '2024-03-20', 1),
+(3, 'abc', 'abc', 1, 'admin', 'admin', '2024-03-26', 0),
+(4, 'test', '2', 1, 'admin', NULL, '2024-03-27', 0),
 (5, 'test', 'd', 1, 'c', NULL, '2024-03-27', 0),
 (6, 'test', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?', 1, 'admin', NULL, '2024-03-27', 0),
-(7, 'test', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?', 1, 'admin', 'prac', '2024-03-27', 0);
+(7, 'test', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?', 1, 'admin', 'admin', '2024-03-27', 0),
+(8, 'nowe', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?', 1, 'admin', NULL, '2024-03-27', 0),
+(9, 'nowe', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?', 1, 'admin', 'admin', '2024-03-27', 0),
+(10, 'a', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?', 1, 'admin', NULL, '2024-03-27', 0),
+(11, 'a', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?', 1, 'admin', NULL, '2024-03-27', 0),
+(12, 'a', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?', 1, 'admin', NULL, '2024-03-27', 0),
+(13, 'a', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?', 1, 'admin', NULL, '2024-03-27', 0),
+(14, 'a', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?', 1, 'admin', NULL, '2024-03-27', 0),
+(15, 'a', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?', 1, 'admin', NULL, '2024-03-27', 0),
+(16, 'a', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?', 1, 'admin', NULL, '2024-03-27', 0),
+(17, 'a', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?', 1, 'admin', NULL, '2024-03-27', 0);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -161,7 +171,7 @@ ALTER TABLE `uprawnienia`
 -- AUTO_INCREMENT for table `zadania`
 --
 ALTER TABLE `zadania`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
