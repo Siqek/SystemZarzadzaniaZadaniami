@@ -1,0 +1,19 @@
+#content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dangerButton {
+    border-color: red;
+    background-color: #ff000040;
+    color: red;
+    cursor: pointer;
+}
+
+span {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}

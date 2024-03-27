@@ -119,7 +119,12 @@
                         ?>
                     </span>
                 </form>
-            </div>   
+            </div>
+            <div id='usun'>
+                <form action="./usun.php" method='POST'>
+                    <input id='dangerButton' type="submit" value="USUN KONTO">
+                </form>
+            </div>
         </div>
     </div>
 </body>

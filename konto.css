@@ -24,3 +24,17 @@ form {
     justify-content: space-between;
     align-items: center;
 }
+
+#usun {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    padding: 12px 0px;
+}
+
+#dangerButton {
+    border-color: red;
+    background-color: #ff000040;
+    color: red;
+    cursor: pointer;
+}

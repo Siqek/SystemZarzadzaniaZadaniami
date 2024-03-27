@@ -24,7 +24,12 @@
 
             mysqli_query($conn, $sql);
         }
+        else if (isset($_POST["wypisz"]))
+        {
+            $sql = "UPDATE `zadania` SET `pracownik` = NULL WHERE id = " . $_POST["zadanieID"];
 
+            mysqli_query($conn, $sql);
+        }
 
         mysqli_close($conn);
     }
@@ -64,6 +69,7 @@
                                     <p>" . $row["data"] . "</p>
                                 </div>
                                 <p>" . ((!empty($row["pracownik"])) ? $row["pracownik"] : "brak") . "</p>
+                                <div id='line'></div>
                                 </span>
                                 <div class='opis'>
                                     <p>" . $row["opis"] . "</p>
@@ -77,6 +83,13 @@
                                         <input type='submit' value='Przypisz się' name='przypisz'>
                                     </form>";
                                 }
+                                if ($row["pracownik"] == $_SESSION["login"])
+                                {
+                                    echo "<form action='listaZadan.php' method='POST'>
+                                        <input type='text' value='" . $row["id_zadania"] . "' name='zadanieID' hidden>
+                                        <input type='submit' value='Zrezygnuj' name='wypisz'>
+                                    </form>";
+                                }
                                 if (isLoggedAs('admin'))
                                 {
                                     echo "<form action='listaZadan.php' method='POST'>
@@ -84,6 +97,10 @@
                                         <input type='submit' value='Archiwizuj' name='archiwizuj'>
                                     </form>";
                                 }
+                                echo "<form action='./details.php' method='POST'>
+                                    <input type='text' value='" . $row["id_zadania"] . "' name='zadanieID' hidden>
+                                    <input type='submit' value='szczegóły'>
+                                </form>";
                     echo    "</div>
                         </span>";
                 }
