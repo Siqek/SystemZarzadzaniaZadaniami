@@ -19,6 +19,10 @@
     max-height: 90%;
     resize: both;
     overflow: hidden;
+
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 120px calc(100% - 150px);
 }
 
 .info {
@@ -41,5 +45,9 @@
 #opis {
     overflow-x: hidden;
     overflow-y: auto;
-    height: calc(100% - 200px);
+    height: 100%;
+}
+
+.margin {
+    margin: 4px 0px;
 }

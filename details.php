@@ -3,9 +3,46 @@
 
     include "./functions.php";
 
-    if (!isLogged() || !isset($_POST["zadanieID"]))
+    if (!isLogged() || (!isset($_POST["zadanieID"]) && !isset($_SESSION["zadanieID"])))
     {
         navigateTo('./');
+    }
+
+    if (isset($_POST["zadanieID"]))
+        $_SESSION["zadanieID"] = $_POST["zadanieID"];
+
+    $currentID = $_SESSION["zadanieID"];
+
+    if (isset($_POST["usunPrac"]))
+    {
+        $conn = newConn();
+
+        $sql = "UPDATE `zadania` SET `pracownik` = NULL WHERE id = " . $currentID;
+
+        mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
+
+        unset($_POST["usunPrac"]);
+    }
+
+    if (isset($_POST["cancel"]))
+    {
+        unset($_POST["cancel"]);
+        unset($_POST["przypiszPrac"]);
+    }
+    else if (isset($_POST["nowyPrac"]) && isset($_POST["selectPrac"]))
+    {
+        $conn = newConn();
+
+        $sql = "UPDATE `zadania` SET `pracownik` = '" . $_POST["selectPrac"] . "' WHERE id = " . $currentID;
+
+        mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
+
+        unset($_POST["przypiszPrac"]);
+        unset($_POST["nowyPrac"]);
     }
 ?>
 <!DOCTYPE html>
@@ -18,6 +55,30 @@
     <link rel="stylesheet" href="menu.css">
     <link rel="stylesheet" href="details.css">
 </head>
+<?php
+    function selectPrac() 
+    {
+        $conn = newConn();
+
+        $sql = "SELECT * FROM `users` JOIN `uprawnienia` ON `users`.upr = `uprawnienia`.id WHERE `uprawnienia`.nazwa IN ('admin', 'pracownik')";
+        $result = mysqli_query($conn, $sql);
+
+        $select = '';
+        if (mysqli_num_rows($result) > 0)
+        {
+            $select .= "<select name='selectPrac'>";
+            while ($row = mysqli_fetch_assoc($result))
+            {
+                $select .= "<option value='" . $row["login"] . "'>" . $row["login"] . "</option>";
+            }
+            $select .= "</select>";
+        }
+
+        mysqli_close($conn);
+
+        return $select;
+    }
+?>
 <body>
     <?php include "./menu.php"; ?>
     <div id='content'>
@@ -27,23 +88,44 @@
                 <?php
                     $conn = newConn();
 
-                    $sql = "SELECT * FROM `zadania` JOIN `statusy` ON `zadania`.status = `statusy`.id WHERE `zadania`.id =" . $_POST["zadanieID"];
+                    $sql = "SELECT * FROM `zadania` JOIN `statusy` ON `zadania`.status = `statusy`.id WHERE `zadania`.id =" . $currentID;
                     $result = mysqli_query($conn, $sql);
 
                     if (mysqli_num_rows($result) > 0)
                     {
                         if ($row = mysqli_fetch_assoc($result))
                         {
-                            echo "<span class='info'>
-                                <h1>" . $row["tytul"] . "</h1>
-                                <p>" . $row["nazwa"] . "</p>
+                            echo "<span>
+                                <span class='info'>
+                                    <h1 class='margin'>" . $row["tytul"] . "</h1>
+                                    <p class='margin'>" . $row["nazwa"] . "</p>
+                                </span>
+                                <span class='info'>
+                                    <p class='margin'>" . $row["user"] . "</p>
+                                    <p class='margin'>" . $row["data"] . "</p>
+                                </span>
+                                <span class='info'>" . 
+                                    (($row["pracownik"]) 
+                                    ? "<p class='margin'>" . $row["pracownik"] . "</p>"
+                                    : ((isset($_POST["przypiszPrac"]))
+                                        ? "<form method='POST' action='details.php'>"
+                                                . selectPrac()
+                                                . "<input type='submit' value='przypisz' name='nowyPrac'>
+                                                <input type='submit' value='anuluj' name='cancel'>
+                                            </form>" 
+                                        : "<p class='margin'>nie przypisano pracownika</p>"));
+                                if (isLoggedAs('admin'))
+                                {
+                                    echo "<form method='POST' action='./details.php'>";
+                                    if ($row["pracownik"])
+                                        echo "<input type='submit' name='usunPrac' value='zwolnij'>";
+                                    else if (!isset($_POST["przypiszPrac"]))
+                                        echo "<input type='submit' name='przypiszPrac' value='przypisz'>";
+                                    echo "</form>";
+                                }
+                                echo "</span>
+                                <div class='line'></div>
                             </span>
-                            <span class='info'>
-                                <p>" . $row["user"] . "</p>
-                                <p>" . $row["data"] . "</p>
-                            </span>
-                            <p>" . (($row["pracownik"]) ? $row["pracownik"] : "nie przypisano pracownika") . "</p>
-                            <div class='line'></div>
                             <div id='opis'>
                                 <p>" . $row["opis"] . "</p>
                             </div>";
