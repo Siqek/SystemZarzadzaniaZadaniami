@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Mar 27, 2024 at 02:27 PM
+-- Generation Time: Apr 03, 2024 at 08:26 AM
 -- Wersja serwera: 8.2.0
 -- Wersja PHP: 8.2.12
 
@@ -81,7 +81,6 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`login`, `username`, `password`, `upr`) VALUES
 ('a', 'a', '0cc175b9c0f1b6a831c399e269772661', 1),
 ('admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', 3),
-('c', 'c', '4a8a08f09d37b73795649038408b5f33', 1),
 ('prac', 'pracownik', '598fe4e3dfb7a94fb94c1b0502ca3d1c', 2);
 
 -- --------------------------------------------------------
@@ -106,8 +105,8 @@ CREATE TABLE `zadania` (
 --
 
 INSERT INTO `zadania` (`id`, `tytul`, `opis`, `status`, `user`, `pracownik`, `data`, `archiwizowane`) VALUES
-(2, 'test', 'bardzo długi opis', 1, 'a', 'admin', '2024-03-20', 1),
-(3, 'abc', 'abc', 1, 'admin', 'admin', '2024-03-26', 0),
+(2, 'test', 'bardzo długi opis', 1, 'a', 'admin', '2024-03-20', 0),
+(3, 'abc', 'abc', 1, 'admin', 'admin', '2024-03-26', 1),
 (4, 'test', '2', 1, 'admin', NULL, '2024-03-27', 0),
 (5, 'test', 'd', 1, 'c', NULL, '2024-03-27', 0),
 (6, 'test', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?', 1, 'admin', NULL, '2024-03-27', 0),
@@ -121,7 +120,8 @@ INSERT INTO `zadania` (`id`, `tytul`, `opis`, `status`, `user`, `pracownik`, `da
 (14, 'a', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?', 1, 'admin', NULL, '2024-03-27', 0),
 (15, 'a', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?', 1, 'admin', NULL, '2024-03-27', 0),
 (16, 'a', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?', 1, 'admin', NULL, '2024-03-27', 0),
-(17, 'a', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?', 1, 'admin', NULL, '2024-03-27', 0);
+(17, 'a', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?', 1, 'admin', NULL, '2024-03-27', 0),
+(21, 'h', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?Lorem ipsum dolor sit amet consectetur, adipisicing elit. Numquam qui velit autem neque atque! Dolorem eius quaerat, aperiam obcaecati repellat mollitia non, ad optio reiciendis iure pariatur omnis deleniti nihil?\n\n', 1, 'admin', 'c', '2024-04-03', 0);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -171,7 +171,7 @@ ALTER TABLE `uprawnienia`
 -- AUTO_INCREMENT for table `zadania`
 --
 ALTER TABLE `zadania`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
