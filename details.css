@@ -22,7 +22,7 @@
 
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 120px calc(100% - 150px);
+    grid-template-rows: 120px calc(100% - 120px);
 }
 
 .info {
@@ -63,4 +63,13 @@ a.back {
     display: flex;
     flex-direction: row;
     gap: 0.5em;
+}
+
+#opisForm {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: calc(100% - 24px) 24px;
+
+    height: 100%;
+    width: 100%;
 }

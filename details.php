@@ -170,12 +170,16 @@
                                 echo "</span>
                                 <div class='line'></div>
                             </span>
-                            <div id='opis'>
-                                <p>" . $row["opis"] . "</p>
-                            </div>";
+                            <form method='POST' action='./details.php' id='opisForm'>
+                                <div id='opis'>
+                                    <p>" . $row["opis"] . "</p>
+                                </div>
+                                <span>
+                                    <input type='submit' name='editing_opis' value='edutuj'>
+                                </span>
+                            </form>";
                         }
                         #form do edycji jeżeli to ty utworzyleś to zadanie
-                        #zmiana statusu jeżeli ty jesteś przypisany do zadania
                     }
                 ?>
             </div>
