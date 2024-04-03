@@ -44,6 +44,25 @@
         unset($_POST["przypiszPrac"]);
         unset($_POST["nowyPrac"]);
     }
+
+    if (isset($_POST["stop_editing_status"]))
+    {
+        unset($_POST["stop_editing_status"]);
+        unset($_POST["editing_status"]);
+    }
+    else if (isset($_POST["save_status"]) && isset($_POST["status"]))
+    {
+        $conn = newConn();
+
+        $sql = "UPDATE `zadania` SET `status` = '" . $_POST["status"] . "' WHERE id = " . $currentID;
+
+        mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
+
+        unset($_POST["editing_status"]);
+        unset($_POST["save_status"]);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,20 +75,18 @@
     <link rel="stylesheet" href="details.css">
 </head>
 <?php
-    function selectPrac() 
+    function select ($name, $sql, $value_row, $label_row)
     {
         $conn = newConn();
-
-        $sql = "SELECT * FROM `users` JOIN `uprawnienia` ON `users`.upr = `uprawnienia`.id WHERE `uprawnienia`.nazwa IN ('admin', 'pracownik')";
         $result = mysqli_query($conn, $sql);
 
         $select = '';
         if (mysqli_num_rows($result) > 0)
         {
-            $select .= "<select name='selectPrac' class='margin'>";
+            $select .= "<select name='$name' class='margin'>";
             while ($row = mysqli_fetch_assoc($result))
             {
-                $select .= "<option value='" . $row["login"] . "'>" . $row["login"] . "</option>";
+                $select .= "<option value='" . $row[$value_row] . "'>" . $row[$label_row] . "</option>";
             }
             $select .= "</select>";
         }
@@ -78,11 +95,27 @@
 
         return $select;
     }
+
+    function selectPrac($name) 
+    {
+        $sql = "SELECT * FROM `users` 
+            JOIN `uprawnienia` ON `users`.upr = `uprawnienia`.id 
+            WHERE `uprawnienia`.nazwa IN ('admin', 'pracownik')";
+
+        return select($name, $sql, "login", "login");;
+    }
+
+    function selectStatusy ($name)
+    {
+        $sql = "SELECT * FROM `statusy`";
+
+        return select($name, $sql, "id", "nazwa");
+    }
 ?>
 <body>
     <?php include "./menu.php"; ?>
     <div id='content'>
-        <a href="./listaZadan.php">powrót</a>
+        <a href="./listaZadan.php" class='back'>powrót</a>
         <span class='center'>
             <div id='zadanie'>
                 <?php
@@ -98,7 +131,19 @@
                             echo "<span>
                                 <span class='info'>
                                     <h1 class='margin'>" . $row["tytul"] . "</h1>
-                                    <p class='margin'>" . $row["nazwa"] . "</p>
+                                    <form action='details.php' method='POST'>
+                                        <span class='inRow'>"
+                                            . ((isset($_POST["editing_status"])) 
+                                                ? "<input type='submit' value='zapisz' name='save_status'>" 
+                                                : "<input type='submit' value='edytuj' name='editing_status'>" )
+                                            . ((isset($_POST["editing_status"])) 
+                                                ? "<input type='submit' name='stop_editing_status' value='anuluj'>"
+                                                : '')
+                                            . ((isset($_POST["editing_status"])) 
+                                                ? selectStatusy("status")
+                                                : "<p class='margin'>" . $row["nazwa"] . "</p>")
+                                        . "</span>
+                                    </form>
                                 </span>
                                 <span class='info'>
                                     <p class='margin'>" . $row["user"] . "</p>
@@ -109,7 +154,7 @@
                                     ? "<p class='margin'>" . $row["pracownik"] . "</p>"
                                     : ((isset($_POST["przypiszPrac"]))
                                         ? "<form method='POST' action='details.php'>"
-                                                . selectPrac()
+                                                . selectPrac("selectPrac")
                                                 . "<input type='submit' value='przypisz' name='nowyPrac' class='margin'>
                                                 <input type='submit' value='anuluj' name='cancel' class='margin'>
                                             </form>" 

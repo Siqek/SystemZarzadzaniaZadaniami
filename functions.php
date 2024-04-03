@@ -4,7 +4,8 @@
 
     function newConn ()
     {
-        $host = '192.168.15.182';
+        $host = '192.168.43.204';
+        //$host = '192.168.15.182';
         $user = 'root';
         $pass = 'zaq1';
         $db = 'szz';

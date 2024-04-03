@@ -51,3 +51,16 @@
 .margin {
     margin: 4px 0px;
 }
+
+a.back {
+    color: black;
+    font-size: 120%;
+    text-decoration: none;
+    margin: 7px;
+}
+
+.inRow {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
