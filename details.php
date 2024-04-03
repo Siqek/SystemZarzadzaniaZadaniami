@@ -135,7 +135,7 @@
                                         <span class='inRow'>"
                                             . ((isset($_POST["editing_status"])) 
                                                 ? "<input type='submit' value='zapisz' name='save_status'>" 
-                                                : "<input type='submit' value='edytuj' name='editing_status'>" )
+                                                : ((isLoggedAs('admin') || $row["pracownik"] == $_SESSION["login"]) ? "<input type='submit' value='edytuj' name='editing_status'>" : ''))
                                             . ((isset($_POST["editing_status"])) 
                                                 ? "<input type='submit' name='stop_editing_status' value='anuluj'>"
                                                 : '')
