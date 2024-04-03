@@ -66,7 +66,7 @@
         $select = '';
         if (mysqli_num_rows($result) > 0)
         {
-            $select .= "<select name='selectPrac'>";
+            $select .= "<select name='selectPrac' class='margin'>";
             while ($row = mysqli_fetch_assoc($result))
             {
                 $select .= "<option value='" . $row["login"] . "'>" . $row["login"] . "</option>";
@@ -110,17 +110,17 @@
                                     : ((isset($_POST["przypiszPrac"]))
                                         ? "<form method='POST' action='details.php'>"
                                                 . selectPrac()
-                                                . "<input type='submit' value='przypisz' name='nowyPrac'>
-                                                <input type='submit' value='anuluj' name='cancel'>
+                                                . "<input type='submit' value='przypisz' name='nowyPrac' class='margin'>
+                                                <input type='submit' value='anuluj' name='cancel' class='margin'>
                                             </form>" 
                                         : "<p class='margin'>nie przypisano pracownika</p>"));
                                 if (isLoggedAs('admin'))
                                 {
                                     echo "<form method='POST' action='./details.php'>";
                                     if ($row["pracownik"])
-                                        echo "<input type='submit' name='usunPrac' value='zwolnij'>";
+                                        echo "<input type='submit' name='usunPrac' value='zwolnij' class='margin'>";
                                     else if (!isset($_POST["przypiszPrac"]))
-                                        echo "<input type='submit' name='przypiszPrac' value='przypisz'>";
+                                        echo "<input type='submit' name='przypiszPrac' value='przypisz' class='margin'>";
                                     echo "</form>";
                                 }
                                 echo "</span>
