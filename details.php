@@ -16,6 +16,7 @@
     <title>SZZ</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="details.css">
 </head>
 <body>
     <?php include "./menu.php"; ?>
@@ -30,9 +31,15 @@
 
                 if (mysqli_num_rows($result) > 0)
                 {
-                    $row = mysqli_fetch_assoc($result);
-
-                    print_r($row);
+                    if ($row = mysqli_fetch_assoc($result))
+                    {
+                        echo "<p>" . $row["tytul"] . "</p>";
+                        echo "<p>" . $row["opis"] . "</p>";
+                        echo "<p>" . $row["nazwa"] . "</p>";
+                        echo "<p>" . $row["user"] . "</p>";
+                        echo "<p>" . $row["pracownik"] . "</p>";
+                        echo "<p>" . $row["data"] . "</p>";
+                    }
                     #form do edycji jeżeli to ty utworzyleś to zadanie
                     #zmiana statusu jeżeli ty jesteś przypisany do zadania
                 }

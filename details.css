@@ -1,0 +1,9 @@
+#content {
+    background-color: #00000000;
+}
+
+#zadanie {
+    border: 1px solid black;
+    width: 60%;
+    height: 60%;
+}

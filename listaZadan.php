@@ -20,13 +20,19 @@
         }
         else if (isset($_POST["archiwizuj"]))
         {
-            $sql = "UPDATE `zadania` SET `archiwizowane` = true WHERE id = " . $_POST["zadanieID"];
+            $sql = "UPDATE `zadania` SET `archiwizowane`= NOT `archiwizowane` WHERE id = " . $_POST["zadanieID"];
 
             mysqli_query($conn, $sql);
         }
         else if (isset($_POST["wypisz"]))
         {
             $sql = "UPDATE `zadania` SET `pracownik` = NULL WHERE id = " . $_POST["zadanieID"];
+
+            mysqli_query($conn, $sql);
+        }
+        else if (isset($_POST["usun"]))
+        {
+            $sql = "DELETE FROM `zadania` WHERE id = " . $_POST["zadanieID"];
 
             mysqli_query($conn, $sql);
         }
@@ -50,7 +56,10 @@
         <?php
             $conn = newConn();
 
-            $sql = "SELECT *, `zadania`.id as id_zadania FROM `zadania` JOIN `statusy` ON `zadania`.status = `statusy`.id WHERE archiwizowane = false";
+            if (isLoggedAs('admin'))
+                $sql = "SELECT *, `zadania`.id as id_zadania FROM `zadania` JOIN `statusy` ON `zadania`.status = `statusy`.id ORDER BY `data` DESC";
+            else
+                $sql = "SELECT *, `zadania`.id as id_zadania FROM `zadania` JOIN `statusy` ON `zadania`.status = `statusy`.id WHERE archiwizowane = false ORDER BY `data` DESC";
             $result = mysqli_query($conn, $sql);
 
             if (mysqli_num_rows($result) > 0)
@@ -75,33 +84,26 @@
                                     <p>" . $row["opis"] . "</p>
                                 </div>
                             </div>
-                            <div class='tools'>";
+                            <div class='tools'>
+                                <form action='./listaZadan.php' method='POST'>
+                                    <input type='text' value='" . $row["id_zadania"] . "' name='zadanieID' hidden>";
+                                if ($row["user"] == $_SESSION["login"] && $row["nazwa"] == 'nierozpoczęte')
+                                    echo "<input type='submit' value='Usuń zadanie' name='usun'>"; 
+
                                 if (empty($row["pracownik"]) && (isLoggedAs("pracownik") || isLoggedAs("admin")))
-                                {
-                                    echo "<form action='listaZadan.php' method='POST'>
-                                        <input type='text' value='" . $row["id_zadania"] . "' name='zadanieID' hidden>
-                                        <input type='submit' value='Przypisz się' name='przypisz'>
-                                    </form>";
-                                }
+                                    echo "<input type='submit' value='Przypisz się' name='przypisz'>";
+
                                 if ($row["pracownik"] == $_SESSION["login"])
-                                {
-                                    echo "<form action='listaZadan.php' method='POST'>
-                                        <input type='text' value='" . $row["id_zadania"] . "' name='zadanieID' hidden>
-                                        <input type='submit' value='Zrezygnuj' name='wypisz'>
-                                    </form>";
-                                }
+                                    echo "<input type='submit' value='Zrezygnuj' name='wypisz'>";
+
                                 if (isLoggedAs('admin'))
-                                {
-                                    echo "<form action='listaZadan.php' method='POST'>
-                                        <input type='text' value='" . $row["id_zadania"] . "' name='zadanieID' hidden>
-                                        <input type='submit' value='Archiwizuj' name='archiwizuj'>
-                                    </form>";
-                                }
+                                    echo "<input type='submit' value='" . (($row['archiwizowane']) ? "Odarchiwizuj" : "Archiwizuj") . "' name='archiwizuj'>";
+                                echo "</form>";
                                 echo "<form action='./details.php' method='POST'>
                                     <input type='text' value='" . $row["id_zadania"] . "' name='zadanieID' hidden>
                                     <input type='submit' value='szczegóły'>
-                                </form>";
-                    echo    "</div>
+                                </form>
+                            </div>
                         </span>";
                 }
             }
