@@ -73,3 +73,12 @@ a.back {
     height: 100%;
     width: 100%;
 }
+
+#inputOpis {
+    max-height: calc(100% - 10px);
+    width: calc(100% - 20px);
+    margin: 0px 5px;
+    
+    resize: none;
+    overflow-y: auto;
+}
