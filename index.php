@@ -2,6 +2,7 @@
     session_start();
 
     include "./functions.php";
+    include "./popup.php";
 
     if (isset($_POST["login"], $_POST["password"]) 
         && !empty($_POST["login"])
@@ -19,6 +20,12 @@
         {
             $userInfo = mysqli_fetch_assoc($result);
             setSessionUserVars($userInfo["login"], $userInfo["username"], $userInfo["upr"]);
+
+            setPopupVars("Sukces!", "Zalogowano.");
+        }
+        else
+        {
+            setPopupVars("Pomyłka", "Upewnij się, czy login i hasło są poprawnie zapisane.");
         }
 
         mysqli_close($conn);
@@ -36,6 +43,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SZZ</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="popup.css">
 </head>
 <body>
     <form action="./index.php" method="POST">
@@ -44,5 +52,6 @@
         <input type="submit" value="Zaloguj się">
     </form>
     <a href="./rejestracja.php">zarejestruj się</a>
+    <?php popup(); ?>
 </body>
 </html>

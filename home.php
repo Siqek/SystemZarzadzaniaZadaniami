@@ -2,6 +2,7 @@
     session_start();
 
     include "./functions.php";
+    include "./popup.php";
 
     if (!isLogged())
     {
@@ -16,9 +17,15 @@
     <title>SZZ</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="popup.css">
 </head>
 <body>
     <?php include "./menu.php"; ?>
-    HOME
+    <div id='main'>
+        <div>
+            <?php popup(); ?>
+        </div>
+        HOME
+    </div>
 </body>
 </html>
