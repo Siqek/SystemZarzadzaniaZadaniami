@@ -1,7 +1,4 @@
 <?php
-
-use function PHPSTORM_META\map;
-
     if ($_SERVER['PHP_SELF'] == '/popupFunctions.php')
         navigateTo('./');
 
@@ -51,7 +48,7 @@ use function PHPSTORM_META\map;
             "<div id='popupContainer'>
                 <div id='popup'>
                     <h2 id='popupTitle'>" . $popupVars["title"] . "</h2>
-                    <p id='popupMessage'>" . $popupVars["content"] . "</p>
+                    <span id='popupMessage'><p>" . join("</p><p>", explode("\n", $popupVars["content"])) . "</p></span>
                     <form method='POST' id='popupButton'>
                         <input type='submit' name='closePopup' value='OK'>
                     </form>

@@ -2,6 +2,7 @@
     session_start();
 
     include "./functions.php";
+    include "./popup.php";
 
     if (!isLogged())
     {
@@ -12,9 +13,9 @@
         && !empty($_POST["title"])
         && !empty($_POST["opis"]))
     {
-        $title = $_POST["title"];
-        $opis = $_POST["opis"];
-        $user = $_SESSION["login"];
+        $title  = $_POST["title"];
+        $opis   = $_POST["opis"];
+        $user   = $_SESSION["login"];
 
         $conn = newConn();
 
@@ -23,8 +24,22 @@
 
         if (mysqli_query($conn, $sql))
         {
-            
+            setPopupVars("Sukces!", "Dodano nowe zadanie.");
         }
+        else
+        {
+            setPopupVars("Błąd!", "Nie można utworzyć zadania");
+        }
+
+        mysqli_close($conn);
+
+        unset($_POST["title"]);
+        unset($_POST["opis"]);
+    }
+    else if (isset($_POST["form"]))
+    {
+        unset($_POST["form"]);
+        setPopupVars("Pomyłka!", "Podaj więcej informacji aby utworzyć zadanie.");
     }
 ?>
 <!DOCTYPE html>
@@ -35,13 +50,15 @@
     <title>SZZ</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="menu.css">
+    <link rel="stylesheet" href="popup.css">
 </head>
 <body>
     <?php include './menu.php'; ?>
     <form action="./zadanieForm.php" method="POST">
         <input type="text" name="title" placeholder="tytuł" maxlength="100">
         <input type="text" name="opis" placeholder="opis">
-        <input type="submit" value="Dodaj">
+        <input type="submit" name="form" value="Dodaj">
     </form>
+    <?php popup(); ?>
 </body>
 </html>

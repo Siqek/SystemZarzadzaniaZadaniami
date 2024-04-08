@@ -2,6 +2,7 @@
     session_start();
 
     include "./functions.php";
+    include "./popup.php";
 
     if (isLogged())
     {
@@ -28,7 +29,7 @@
         }
         else
         {
-            echo "błąd";
+            setPopupVars("Błąd!", "Nie można utworzyć użytkownika.");
         }
 
         mysqli_close($conn);
@@ -41,6 +42,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SZZ</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="popup.css">
 </head>
 <body>
     <form action="./rejestracja.php" method="POST">
@@ -50,5 +52,6 @@
         <input type="submit" value="Utwórz konto">
     </form>
     <a href="./">zaloguj się</a>
+    <?php popup(); ?>
 </body>
 </html>

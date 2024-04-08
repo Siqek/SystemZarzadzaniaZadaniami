@@ -2,13 +2,14 @@
     session_start();
 
     include "./functions.php";
+    include "./popup.php";
 
     if (!isLogged())
     {
         navigateTo('./');
     }
 
-    if (isset($_POST['cancel_username']))
+    if (isset($_POST['cancel_username']) || $_POST["newUsername"] == $_SESSION["username"])
     {
         unset($_POST["edit_username"]);
         unset($_POST["newUsername"]);
@@ -23,7 +24,17 @@
         $sql = "UPDATE `users` SET `username`='$newUsername' WHERE login = '$login'";
 
         if (mysqli_query($conn, $sql))
+        {
             $_SESSION["username"] = $newUsername;
+            setPopupVars("Sukces!", "Zmieniono nazwę użytkownika.");
+        }
+        else
+        {
+            setPopupVars("Błąd!", 
+                "Nie można zmienić nazwy użytkownika."
+                . "\nSpróbuj ponownie później"
+            );
+        }
 
         unset($_POST["edit_username"]);
         unset($_POST["newUsername"]);
@@ -45,7 +56,16 @@
 
         $sql = "UPDATE `users` SET `password`='$newPass' WHERE login = '$login'";
 
-        mysqli_query($conn, $sql);
+        if (mysqli_query($conn, $sql))
+        {
+            setPopupVars("Sukces!", "Hasło zostało zmienione.");
+        }
+        else
+        {
+            setPopupVars("Błąd!", 
+                "Nie można zmienić hasła."
+                . "\nSpróbuj ponownie później");
+        }
 
         unset($_POST["edit_pass"]);
         unset($_POST["newPass"]);
@@ -62,6 +82,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="menu.css">
     <link rel="stylesheet" href="konto.css">
+    <link rel="stylesheet" href="popup.css">
 </head>
 <body>
     <?php include "./menu.php"; ?>
@@ -127,5 +148,6 @@
             </div>
         </div>
     </div>
+    <?php popup(); ?>
 </body>
 </html>

@@ -2,6 +2,7 @@
     session_start();
 
     include "./functions.php";
+    include "./popup.php";
 
     if (!isLogged())
     {
@@ -17,7 +18,12 @@
         if (mysqli_query($conn, $sql))
         {
             unsetSessionUserVars();
+            setPopupVars("Sukces!", "Twoje konto zostało usunięte");
             navigateTo('./index.php');
+        }
+        else 
+        {
+            setPopupVars("Błąd!", "Nie można usunąć konta.");
         }
 
         mysqli_close($conn);
@@ -32,6 +38,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="menu.css">
     <link rel="stylesheet" href="usun.css">
+    <link rel="stylesheet" href="popup.css">
 </head>
 <body>
     <?php include "./menu.php"; ?>
@@ -44,5 +51,6 @@
             </form>
         </span>
     </div>
+    <?php popup(); ?>
 </body>
 </html>
