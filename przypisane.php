@@ -45,7 +45,7 @@
                             <p>" . ((!empty($row["pracownik"])) ? $row["pracownik"] : "brak") . "</p>
                             </span>
                             <div class='opis'>
-                                <p>" . $row["opis"] . "</p>
+                                <p>" . str_replace("\n", "<br>", $row["opis"]) . "</p>
                             </div>
                         </div>";
                 }

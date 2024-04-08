@@ -12,7 +12,7 @@
         );
     }
 
-    function setPopupVars($title = 0, $content = '') : void
+    function setPopupVars($title = '', $content = '') : void
     {
         $_SESSION["POPUP_TITLE"]     = $title;
         $_SESSION["POPUP_CONTENT"]   = $content;

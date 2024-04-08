@@ -236,7 +236,7 @@
                             onload='auto_resize(this);' onkeypress='auto_resize(this);' onkeyup='auto_resize(this);'>" 
                                 . $row["opis"] 
                             . "</textarea>" 
-                        :   "<p>" . $row["opis"] . "</p>"
+                        :   "<p>" . str_replace("\n", "<br>", $row["opis"]) . "</p>"
                     ) .
                     "</div>
                     <span>"

@@ -81,7 +81,7 @@
                                 <div id='line'></div>
                                 </span>
                                 <div class='opis'>
-                                    <p>" . $row["opis"] . "</p>
+                                    <p>" . str_replace("\n", "<br>", $row["opis"]) . "</p>
                                 </div>
                             </div>
                             <div class='tools'>
