@@ -19,8 +19,8 @@
 
         $conn = newConn();
 
-        $sql = "INSERT INTO `zadania`(`tytul`, `opis`, `status`, `user`, `pracownik`, `data`, `archiwizowane`)
-            VALUES ('$title','$opis', 1,'$user', NULL, CURRENT_DATE, false)";
+        $sql = "INSERT INTO `zadania`(`tytul`, `opis`, `user`, `data`)
+            VALUES ('$title', '$opis', '$user', CURRENT_DATE)";
 
         if (mysqli_query($conn, $sql))
         {

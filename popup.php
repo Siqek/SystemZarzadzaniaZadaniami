@@ -13,6 +13,7 @@
         else if (shouldDisplayPopup())
         {
             displayPopup();
+            unsetPopupVars();
         }
     }
 ?>

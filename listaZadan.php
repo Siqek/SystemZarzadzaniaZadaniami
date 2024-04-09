@@ -2,6 +2,7 @@
     session_start();
 
     include "./functions.php";
+    include "./popup.php";
 
     if (!isLogged())
     {
@@ -34,7 +35,14 @@
         {
             $sql = "DELETE FROM `zadania` WHERE id = " . $_POST["zadanieID"];
 
-            mysqli_query($conn, $sql);
+            if (mysqli_query($conn, $sql))
+            {
+                setPopupVars("Sukces!", "Usunięto zadanie");
+            }
+            else
+            {
+                setPopupVars("Błąd!", "Nie można usunąć zadania");
+            }
         }
 
         mysqli_close($conn);
@@ -49,9 +57,15 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="menu.css">
     <link rel="stylesheet" href="listaZadan.css">
+    <link rel="stylesheet" href="popup.css">
 </head>
 <body>
     <?php include "./menu.php"; ?>
+    <div id='content'>
+        <div id='wyszukiwanie'>
+            <input type="text" id="searchBar" placeholder="wyszukaj zadania"
+                onkeydown="search(this.value)" onkeyup="search(this.value)">
+        </div>
     <div id="zadania">
         <?php
             $conn = newConn();
@@ -66,11 +80,11 @@
             {
                 while ($row = mysqli_fetch_assoc($result))
                 {
-                    echo "<span class='elem'>
+                    echo "<span class='elem task'>
                             <div class='zadanie'>
                                 <span>
                                 <div class='info'>
-                                    <h3>" . $row["tytul"] . "</h3>
+                                    <h3 id='title'>" . $row["tytul"] . "</h3>
                                     <p>" . $row["nazwa"] . "</p>
                                 </div>
                                 <div class='info'>
@@ -81,7 +95,7 @@
                                 <div id='line'></div>
                                 </span>
                                 <div class='opis'>
-                                    <p>" . str_replace("\n", "<br>", $row["opis"]) . "</p>
+                                    <p id='description'>" . str_replace("\n", "<br>", $row["opis"]) . "</p>
                                 </div>
                             </div>
                             <div class='tools'>
@@ -111,5 +125,34 @@
             mysqli_close($conn);
         ?>
     </div>
+    </div>
+    <?php popup(); ?>
 </body>
+<script>
+    function search(content)
+    {
+        let tasks = document.querySelectorAll(".task");
+
+        tasks.forEach((elem) => 
+        {
+            title = elem.querySelector("#title").innerHTML;
+            description = elem.querySelector("#description").innerHTML;
+
+            console.log((title.includes(content) || description.includes(content)))
+
+            if (title.includes(content) || description.includes(content))
+            {
+                elem.style.display = 'inline-flex';
+                elem.querySelector(".tools").style.display = 'flex';
+                elem.querySelector(".zadanie").style.display = 'grid';
+            }
+            else
+            {
+                elem.style.display = 'none';
+                elem.querySelector(".tools").style.display = 'none';
+                elem.querySelector(".zadanie").style.display = 'none';
+            }
+        })
+    }
+</script>
 </html>

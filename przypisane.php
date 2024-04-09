@@ -25,7 +25,7 @@
         <?php
             $conn = newConn();
 
-            $sql = "SELECT * FROM `zadania` JOIN `statusy` ON `zadania`.status = `statusy`.id WHERE archiwizowane = false AND pracownik = '" . $_SESSION["login"] . "'";
+            $sql = "SELECT * FROM `zadania` JOIN `statusy` ON `zadania`.status = `statusy`.id WHERE archiwizowane = false AND pracownik = '" . $_SESSION["login"] . "' ORDER BY `data` DESC";
             $result = mysqli_query($conn, $sql);
 
             if (mysqli_num_rows($result) > 0)

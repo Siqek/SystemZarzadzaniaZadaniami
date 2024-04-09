@@ -2,6 +2,7 @@
     session_start();
 
     include "./functions.php";
+    include "./popup.php";
 
     if (!isLogged() || (!isset($_POST["zadanieID"]) && !isset($_SESSION["zadanieID"])))
     {
@@ -91,6 +92,27 @@
         unset($_POST["editing_opis"]);
         unset($_POST['nowy_opis']);
     }
+
+    #oznaczenie zadania jako zakonczone
+    if (isset($_POST["ukoncz"]))
+    {
+        unset($_POST["ukoncz"]);
+
+        $conn = newConn();
+
+        $sql = "UPDATE `zadania` SET `wykonane` = true WHERE `id` = " . $currentID;
+
+        if (mysqli_query($conn, $sql))
+        {
+            setPopupVars("Sukces!", "Zakończono zadanie.");
+        }
+        else
+        {
+            setPopupVars("Błąd!", "Nie można oznaczyć zadania jako zakończone");
+        }
+
+        mysqli_close($conn);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -101,6 +123,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="menu.css">
     <link rel="stylesheet" href="details.css">
+    <link rel="stylesheet" href="popup.css">
 </head>
 <?php
     function select ($name, $sql, $value_row, $label_row)
@@ -172,7 +195,7 @@
                                         . selectStatusy("status")
                                     :   # przycisk do edycji statusu
                                         (
-                                            (isLoggedAs('admin') || $row["pracownik"] == $_SESSION["login"]) 
+                                            ((isLoggedAs('admin') || $row["pracownik"] == $_SESSION["login"]) && $row["wykonane"] == false) 
                                             ?   "<input type='submit' value='edytuj' name='editing_status'>" 
                                             :   ''
                                         )
@@ -206,7 +229,7 @@
                     )
                     #przyciski do obslugi przypisanego pracownika do zadania (tylko dla admina)
                     . (
-                        (isLoggedAs('admin'))
+                        (isLoggedAs('admin') && $row["nazwa"] != "wykonane" && $row["wykonane"] == false)
                         ? "<form method='POST' action='./details.php'>" . 
                             (($row["pracownik"]) 
                                 ?   #przycisk do usuniecia przypisanego pracownika z zadania
@@ -239,24 +262,36 @@
                         :   "<p>" . str_replace("\n", "<br>", $row["opis"]) . "</p>"
                     ) .
                     "</div>
-                    <span>"
-                    #przyciski do obslugi edycji opisu
-                    . (
-                        (isset($_POST["editing_opis"])) 
-                        ?   #przycisk do zapisu opisu
-                            #przycisk do anulowania
-                            "<input type='submit' name='save_opis' value='zapisz'>
-                            <input type='submit' name='stop_editing_opis' value='anuluj'>"
-                        :   #edycja mozliwa gdy zadanie nie zostalo jeszcze rozpoczete
-                            #zadanie musi nalezec do zalogowanej osoby aby edutowac
-                            (
-                                ($row["nazwa"] === 'nierozpoczęte' && $_SESSION["login"] === $row["user"]) 
-                                ?   #przycisk do edycji opisu
-                                    "<input type='submit' name='editing_opis' value='edutuj'>" 
-                                :   ''
-                            )
-                    ) . 
-                    "</span>
+                    <span id='buttons'>
+                        <span>"
+                        #przyciski do obslugi edycji opisu
+                        . (
+                            (isset($_POST["editing_opis"])) 
+                            ?   #przycisk do zapisu opisu
+                                #przycisk do anulowania
+                                "<input type='submit' name='save_opis' value='zapisz'>
+                                <input type='submit' name='stop_editing_opis' value='anuluj'>"
+                            :   #edycja mozliwa gdy zadanie nie zostalo jeszcze rozpoczete
+                                #zadanie musi nalezec do zalogowanej osoby aby edutowac
+                                (
+                                    ($row["nazwa"] === 'nierozpoczęte' && $_SESSION["login"] === $row["user"]) 
+                                    ?   #przycisk do edycji opisu
+                                        "<input type='submit' name='editing_opis' value='edutuj'>" 
+                                    :   ''
+                                )
+                        ) . 
+                        "</span>
+                        <span>
+                            <form method='POST' action='./details.php'>"
+                                #przycisk do oznaczenia zadania jako zakończonego
+                                . (
+                                    ($row["nazwa"] === 'wykonane' && isLoggedAs('admin') && $row["wykonane"] == false) 
+                                    ? "<input type='submit' name='ukoncz' value='Zakończ zadanie'>"
+                                    : ''
+                                )
+                            . "</form>
+                        </span>
+                    </span>
                 </form>";
         }
     }
@@ -264,6 +299,7 @@
             </div>
         </span>
     </div>
+    <?php popup(); ?>
 </body>
 <script>
     function auto_resize (element)

@@ -70,3 +70,22 @@
     height: 1px;
     background-color: black;
 }
+
+#content {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 10% 90%;
+    grid-template-areas: 1 / 1;
+}
+
+#wyszukiwanie {
+    border-bottom: 1px solid black;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#searchBar {
+    width: 35%;
+}
