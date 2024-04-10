@@ -56,6 +56,7 @@
 <body>
     <?php include './menu.php'; ?>
     <form action="./zadanieForm.php" method="POST">
+        <h3>Dodaj nowe zadanie: </h3>
         <input id='title' type="text" name="title" placeholder="tytuł" maxlength="100">
         <textarea class='scroll' id='opis' name="opis" placeholder="opis" onkeypress='auto_resize(this);' onkeyup='auto_resize(this);'></textarea>
         <br>

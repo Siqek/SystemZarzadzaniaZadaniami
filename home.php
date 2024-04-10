@@ -21,11 +21,11 @@
 </head>
 <body>
     <?php include "./menu.php"; ?>
-    <div id='main'>
+    <div id='main' style="display: grid; place-items: center;">
+        <p class='green'>HOME</p>
         <div>
             <?php popup(); ?>
         </div>
-        HOME
     </div>
 </body>
 </html>

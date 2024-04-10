@@ -21,10 +21,7 @@
             $userInfo = mysqli_fetch_assoc($result);
             setSessionUserVars($userInfo["login"], $userInfo["username"], $userInfo["upr"]);
 
-            setPopupVars("Sukces!", 
-                "Witaj ponownie."
-                . "\nWłaśnie się zalogowałeś <b>" . $_SESSION["username"] . "</b>.",
-                "/home.php"
+            setPopupVars("Sukces!", "Witaj ponownie <b>" . $_SESSION["username"] . "</b>.", "/home.php"
             );
         }
         else

@@ -23,7 +23,7 @@
     <?php include "./menu.php"; ?>
     <div id='content'>
         <div id='wyszukiwanie'>
-            <input type="text" id="searchBar" placeholder="wyszukaj zadania"
+            <input type="text" id="searchBar" placeholder="wyszukaj zadanie"
                 onkeydown="search(this.value)" onkeyup="search(this.value)">
         </div>
         <div id="zadania" class='scroll'>
