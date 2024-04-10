@@ -88,4 +88,6 @@
 
 #searchBar {
     width: 35%;
+
+    border-radius: 20px;
 }

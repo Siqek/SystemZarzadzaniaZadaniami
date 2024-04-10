@@ -34,6 +34,11 @@
 
         mysqli_close($conn);
     }
+    else if (isset($_POST["log_btn"]))
+    {
+        unset($_POST["log_btn"]);
+        setPopupVars("", "Wprowadź dane aby się zalogować");
+    }
 
     if (isLogged())
     {
@@ -48,13 +53,21 @@
     <title>SZZ</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="popup.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <form action="./index.php" method="POST">
-        <input type="text" name="login" placeholder="login" maxlength="100">
-        <input type="password" name="password" placeholder="hasło">
-        <input type="submit" value="Zaloguj się">
-    </form>
+    <div id='form-container'>
+        <div id='nag'>
+            <h3>Zaloguj się na istniejące konto</h3>
+        </div>
+        <form id='form' action="./index.php" method="POST">
+            <input type="text" name="login" placeholder="login" maxlength="100">
+            <input type="password" name="password" placeholder="hasło">
+            <div class='space'></div>
+            <input type="submit" name='log_btn' value="Zaloguj się">
+        </form>
+    </div>
+    <p>lub</p>
     <a href="./rejestracja.php">zarejestruj się</a>
     <?php popup(); ?>
 </body>

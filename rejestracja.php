@@ -34,6 +34,11 @@
 
         mysqli_close($conn);
     }
+    else if (isset($_POST["btn"]))
+    {
+        unset($_POST["btn"]);
+        setPopupVars("", "Wprowadź dane aby utworzyć konto");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,15 +48,23 @@
     <title>SZZ</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="popup.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <form action="./rejestracja.php" method="POST">
-        <input type="text" name="login" placeholder="login" maxlength="100">
-        <input type="text" name="username" placeholder="nazwa użytkownika" maxlength="100">
-        <input type="password" name="password" placeholder="hasło">
-        <input type="submit" value="Utwórz konto">
-    </form>
-    <a href="./">zaloguj się</a>
+    <div id='form-container'>
+        <div id='nag'>
+            <h3>Utwórz nowe konto</h3>
+        </div>
+        <form id='form' action="./rejestracja.php" method="POST">
+            <input type="text" name="login" placeholder="login" maxlength="100">
+            <input type="text" name="username" placeholder="nazwa użytkownika" maxlength="100">
+            <input type="password" name="password" placeholder="hasło">
+            <div class='space'></div>
+            <input type="submit" name='btn' value="Utwórz konto">
+        </form>
+    </div>
+    <p>lub</p>
+    <a href="./">zaloguj się na istniejące</a>
     <?php popup(); ?>
 </body>
 </html>

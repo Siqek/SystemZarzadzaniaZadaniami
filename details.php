@@ -251,7 +251,7 @@
 
                 #opis zadania
                 . "<form method='POST' action='./details.php' id='opisForm'>
-                    <div id='opis'>"
+                    <div id='opis' class='scroll'>"
                     #edycja opisu / wyswietlenie opisu
                     . (
                         (isset($_POST["editing_opis"])) 

@@ -93,7 +93,7 @@
                             <td>" . $row["login"] . "</td>
                             <td>" . $row["username"] . "</td>
                             <td>" . (isset($_POST[$row["login"]]) ? selectForm() : $row["nazwa"]) . "</td>
-                            <td class='noBorder'>
+                            <td class='noBorder' style='background-color: transparent;'>
                                 " . (isset($_POST[$row["login"]]) ? "<input type='submit' name='cancel' value='ANULUJ'>" : "") . "
                                 <input type='submit' name='" . $row["login"] . "' value='" . (isset($_POST[$row["login"]]) ? "ZAPISZ" : "EDYTUJ") ."'>
                             </td>

@@ -1,0 +1,53 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+    width: 100%;
+
+    margin: 0px;
+}
+
+#form-container {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 10% 90%;
+    grid-template-areas: 1 / 1;
+    place-items: center;
+
+    height: 35%;
+    width: 50%;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40%;
+    max-width: 300px;
+    gap: 12px;
+}
+
+#form > input {
+    text-align: center;
+    border-radius: 20px;
+}
+
+#nag {
+    display: grid;
+    place-items: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+.space {
+    height: 20px;
+}
+
+a {
+    color: rgb(25, 224, 131);
+}

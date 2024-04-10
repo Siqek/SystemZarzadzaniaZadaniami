@@ -19,14 +19,15 @@ body {
     gap: 20px;
 
     padding-top: 40px;
-    border-right: 1px solid black;
+    border-right: 1px solid rgb(194, 194, 194);
     
     width: 100%;
 }
 
-#menu > a {
+#menu a {
     width: 80%;
     font-weight: bold;
     font-size: 120%;
-    color: #000000ff;
+    color: rgb(25, 224, 131, 0.7);
+    color: rgb(194, 194, 194);
 }

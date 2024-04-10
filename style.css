@@ -1,3 +1,27 @@
 body {
-    background-color: rgb(67, 83, 92);
+    /* background-color: rgb(67, 83, 92); */
+    /* background-image: linear-gradient(to right bottom, rgb(34, 34, 34), rgb(28, 28, 28), rgb(34, 34, 34)); */
+    background-color: rgb(28, 28, 28);
+}
+
+a {
+    text-decoration: none;
+}
+
+* {
+    color: rgb(194, 194, 194);
+}
+
+input, select, textarea {
+    background-color: rgb(30, 30, 30);
+    border: 1px solid rgb(25, 224, 131);
+}
+
+form input, form select, form textarea {
+    border: 1px solid rgb(194, 194, 194);
+}
+
+.scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(25, 224, 131) rgb(24, 24, 24);
 }
