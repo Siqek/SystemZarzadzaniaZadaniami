@@ -38,7 +38,7 @@
                     while ($row = mysqli_fetch_assoc($result))
                     {
                         echo "<span class='elem task'>
-                                <div class='zadanie'>
+                                <div class='zadanie przypisane'>
                                     <span>
                                     <div class='info'>
                                         <h3 id='title' class='green'>" . $row["tytul"] . "</h3>

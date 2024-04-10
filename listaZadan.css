@@ -15,7 +15,7 @@
 }
 
 .zadanie {
-    border: 1px solid black;
+    border: 1px solid rgb(194, 194, 194);
     width: 400px;
     padding: 12px;
     height: 200px;
@@ -23,6 +23,9 @@
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: 100px calc(100% - 100px);
+
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
 }
 
 .info {
@@ -37,7 +40,8 @@
 }
 
 .zadanie > .opis {
-    height: 100%;
+    margin-top: 10px;
+    height: calc(100% - 10px);
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -54,25 +58,29 @@
     height: 40px;
     width: 412px;
     padding: 6px;
-    border: 1px solid black;
+    border: 1px solid rgb(194, 194, 194);
 
     display: flex;
     flex-direction: row-reverse;
-    justify-content: end;
+    justify-content: center;
     align-items: center;
     gap: 7px;
+
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-top-width: 0px;
 }
 
 .elem {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 0px;
 }
 
 #line {
     width: 100%;
     height: 1px;
-    background-color: black;
+    background-color: rgb(194, 194, 194);
 }
 
 #content {
@@ -83,7 +91,7 @@
 }
 
 #wyszukiwanie {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgb(194, 194, 194);
 
     display: flex;
     justify-content: center;
@@ -94,4 +102,15 @@
     width: 35%;
 
     border-radius: 20px;
+}
+
+.tools form {
+    display: flex;
+    flex-direction: row;
+    gap: 7px;
+}
+
+.przypisane {
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
 }

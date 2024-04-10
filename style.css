@@ -29,7 +29,7 @@ input[type=submit] {
 
 .scroll {
     scrollbar-width: thin;
-    scrollbar-color: rgb(25, 224, 131) rgb(24, 24, 24);
+    scrollbar-color: rgb(25, 224, 131) rgb(20, 20, 20);
 }
 
 .green {

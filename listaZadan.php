@@ -91,7 +91,7 @@
                                         <p>" . $row["user"] . "</p>
                                         <p>" . $row["data"] . "</p>
                                     </div>
-                                    <p>" . ((!empty($row["pracownik"])) ? $row["pracownik"] : "brak") . "</p>
+                                    <p>pracownik: " . ((!empty($row["pracownik"])) ? $row["pracownik"] : "brak") . "</p>
                                     <div id='line'></div>
                                     </span>
                                     <div class='opis scroll'>
