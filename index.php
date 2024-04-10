@@ -23,7 +23,8 @@
 
             setPopupVars("Sukces!", 
                 "Witaj ponownie."
-                . "\nWłaśnie się zalogowałeś <b>" . $_SESSION["username"] . "</b>."
+                . "\nWłaśnie się zalogowałeś <b>" . $_SESSION["username"] . "</b>.",
+                "/home.php"
             );
         }
         else

@@ -7,15 +7,17 @@
         return (
             isset(
                 $_SESSION["POPUP_TITLE"], 
-                $_SESSION["POPUP_CONTENT"]
+                $_SESSION["POPUP_CONTENT"],
+                $_SESSION["POPUP_LOCATION"]
             )
         );
     }
 
-    function setPopupVars($title = '', $content = '') : void
+    function setPopupVars($title = '', $content = '', $location = '') : void
     {
-        $_SESSION["POPUP_TITLE"]     = $title;
-        $_SESSION["POPUP_CONTENT"]   = $content;
+        $_SESSION["POPUP_TITLE"]        = $title;
+        $_SESSION["POPUP_CONTENT"]      = $content;
+        $_SESSION["POPUP_LOCATION"]     = ((empty($location)) ? $_SERVER["PHP_SELF"] : $location);
     }
 
     function getPopupVars() //: array | bool
@@ -23,7 +25,8 @@
         return (issetPopupVars() 
             ? array(
                 "title"     => $_SESSION["POPUP_TITLE"],
-                "content"   => $_SESSION["POPUP_CONTENT"]
+                "content"   => $_SESSION["POPUP_CONTENT"],
+                "location"  => $_SESSION["POPUP_LOCATION"]
             )
             : false
         );
@@ -33,11 +36,12 @@
     {
         unset($_SESSION["POPUP_TITLE"]);
         unset($_SESSION["POPUP_CONTENT"]);
+        unset($_SESSION["POPUP_LOCATION"]);
     }
 
     function shouldDisplayPopup() : bool
     {
-        return (issetPopupVars());
+        return (issetPopupVars() && $_SERVER["PHP_SELF"] == $_SESSION["POPUP_LOCATION"]);
     }
 
     function displayPopup() : void

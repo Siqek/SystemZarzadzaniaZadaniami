@@ -5,7 +5,7 @@
     include "./popup.php";
 
     unsetSessionUserVars();
-    setPopupVars("Sukces!", "Zostałeś wylogowany.");
+    setPopupVars("Sukces!", "Zostałeś wylogowany.", "/index.php");
 
-    navigateTo('./');
+    navigateTo('./index.php');
 ?>

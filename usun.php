@@ -18,7 +18,7 @@
         if (mysqli_query($conn, $sql))
         {
             unsetSessionUserVars();
-            setPopupVars("Sukces!", "Twoje konto zostało usunięte");
+            setPopupVars("Sukces!", "Twoje konto zostało usunięte", "/index.php");
             navigateTo('./index.php');
         }
         else 
