@@ -39,7 +39,7 @@
     else if (isset($_POST["form"]))
     {
         unset($_POST["form"]);
-        setPopupVars("Pomyłka!", "Podaj więcej informacji aby utworzyć zadanie.");
+        setPopupVars("", "Podaj więcej informacji aby utworzyć zadanie.");
     }
 ?>
 <!DOCTYPE html>
@@ -58,7 +58,7 @@
     <form action="./zadanieForm.php" method="POST">
         <h3>Dodaj nowe zadanie: </h3>
         <input id='title' type="text" name="title" placeholder="tytuł" maxlength="100">
-        <textarea class='scroll' id='opis' name="opis" placeholder="opis" onkeypress='auto_resize(this);' onkeyup='auto_resize(this);'></textarea>
+        <textarea class='scroll' id='opis' name="opis" rows='1' placeholder="opis" onkeypress='auto_resize(this);' onkeyup='auto_resize(this);'></textarea>
         <br>
         <input type="submit" name="form" value="Dodaj">
     </form>
