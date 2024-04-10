@@ -45,9 +45,9 @@
     <div id='content'>
         <h2>NA PEWNO CHCESZ USUNĄĆ KONTO?</h2>
         <span>
-            <button><a href="./konto.php">NIE</a></button>
+            <button class='greenBtn'><a class='darkFont' href="./konto.php">NIE</a></button>
             <form action="./usun.php" method="POST">
-                <input class='dangerButton' type="submit" name="isSure" value="TAK">
+                <button class='dangerButton' type="submit" name="isSure" value="true">TAK</button>
             </form>
         </span>
     </div>

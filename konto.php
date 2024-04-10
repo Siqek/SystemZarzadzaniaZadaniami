@@ -91,7 +91,7 @@
         <div id='userInfo'>
             <div class='info'>
                 <p>Login: </p>
-                <p><?php echo $_SESSION["login"]; ?></p>
+                <p class='green'><?php echo $_SESSION["login"]; ?></p>
             </div>
             <div class='info'>
                 <p>Nazwa konta: </p>
@@ -99,11 +99,11 @@
                     <?php
                         if (isset($_POST["edit_username"]))
                         {
-                            echo "<input type='text' value='" . $_SESSION["username"] . "' name='newUsername'>";
+                            echo "<input class='green' type='text' value='" . $_SESSION["username"] . "' name='newUsername'>";
                         }
                         else
                         {
-                            echo "<p>" . $_SESSION["username"] . "</p>";
+                            echo "<p class='green'>" . $_SESSION["username"] . "</p>";
                         }
                     ?>
                     <span>
@@ -123,11 +123,11 @@
                     <?php
                         if (isset($_POST["edit_pass"]))
                         {
-                            echo "<input type='password' value='' name='newPassword'>";
+                            echo "<input class='green' type='password' value='' name='newPassword'>";
                         }
                         else
                         {
-                            echo "<p>****</p>";
+                            echo "<p class='green'>****</p>";
                         }
                     ?>
                     <span>

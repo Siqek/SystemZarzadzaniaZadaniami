@@ -166,7 +166,8 @@
 <body>
     <?php include "./menu.php"; ?>
     <div id='content'>
-        <a href="./listaZadan.php" class='back'>powrót</a>
+        <!-- <a href="./listaZadan.php" class='back'>powrót</a> -->
+        <span></span>
         <span class='center'>
             <div id='zadanie'>
 <?php
@@ -183,7 +184,7 @@
                 #podstawowe info o zadaniu (bez opisu)
                 "<span>
                     <span class='info'>
-                        <h1 class='margin'>" . $row["tytul"] . "</h1>
+                        <h1 class='margin green'>" . strtoupper($row["tytul"]) . "</h1>
                         <form action='details.php' method='POST'>
                             <span class='inRow'>"
                                 . (

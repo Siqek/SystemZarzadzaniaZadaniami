@@ -84,7 +84,7 @@
                                 <div class='zadanie'>
                                     <span>
                                     <div class='info'>
-                                        <h3 id='title'>" . $row["tytul"] . "</h3>
+                                        <h3 id='title' class='green'>" . $row["tytul"] . "</h3>
                                         <p>" . $row["nazwa"] . "</p>
                                     </div>
                                     <div class='info'>

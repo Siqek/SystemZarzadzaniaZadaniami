@@ -25,6 +25,7 @@
         if (mysqli_query($conn, $sql))
         {
             setSessionUserVars($login, $username, 'user');
+            setPopupVars("Sukces!", "Założono nowe konto <b>" . $username . "</b>", "/home.php");
             navigateTo('./home.php');
         }
         else

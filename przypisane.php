@@ -26,13 +26,13 @@
             <input type="text" id="searchBar" placeholder="wyszukaj zadania"
                 onkeydown="search(this.value)" onkeyup="search(this.value)">
         </div>
-        <div id="zadania">
+        <div id="zadania" class='scroll'>
             <?php
                 $conn = newConn();
-                
+
                 $sql = "SELECT * FROM `zadania` JOIN `statusy` ON `zadania`.status = `statusy`.id WHERE archiwizowane = false AND pracownik = '" . $_SESSION["login"] . "' ORDER BY `data` DESC";
                 $result = mysqli_query($conn, $sql);
-    
+
                 if (mysqli_num_rows($result) > 0)
                 {
                     while ($row = mysqli_fetch_assoc($result))
@@ -41,24 +41,24 @@
                                 <div class='zadanie'>
                                     <span>
                                     <div class='info'>
-                                        <h3 id='title'>" . $row["tytul"] . "</h3>
+                                        <h3 id='title' class='green'>" . $row["tytul"] . "</h3>
                                         <p>" . $row["nazwa"] . "</p>
                                     </div>
                                     <div class='info'>
                                         <p>" . $row["user"] . "</p>
                                         <p>" . $row["data"] . "</p>
                                     </div>
-                                    <p>" . $row["pracownik"] . "</p>
+                                    <p>" . ((!empty($row["pracownik"])) ? $row["pracownik"] : "brak") . "</p>
                                     <div id='line'></div>
                                     </span>
-                                    <div class='opis'>
+                                    <div class='opis scroll'>
                                         <p id='description'>" . str_replace("\n", "<br>", $row["opis"]) . "</p>
                                     </div>
                                 </div>
                             </span>";
                     }
                 }
-            
+
                 mysqli_close($conn);
             ?>
         </div>

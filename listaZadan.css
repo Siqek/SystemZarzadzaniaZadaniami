@@ -46,6 +46,10 @@
     margin: 7px;
 }
 
+.zadanie, .tools {
+    background-color: rgb(24, 24, 24);
+}
+
 .tools {
     height: 40px;
     width: 412px;

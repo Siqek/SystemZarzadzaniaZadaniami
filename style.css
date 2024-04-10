@@ -13,15 +13,25 @@ a {
 }
 
 input, select, textarea {
-    background-color: rgb(30, 30, 30);
+    background-color: rgb(22, 22, 22);
     border: 1px solid rgb(25, 224, 131);
 }
 
-form input, form select, form textarea {
+select, form textarea {
     border: 1px solid rgb(194, 194, 194);
+}
+
+input[type=submit] {
+    border: rgb(20, 168, 99) 1px solid;
+    background-color: rgb(25, 224, 131);
+    color: rgb(24, 24, 24);
 }
 
 .scroll {
     scrollbar-width: thin;
     scrollbar-color: rgb(25, 224, 131) rgb(24, 24, 24);
+}
+
+.green {
+    color: rgb(25, 224, 131);
 }

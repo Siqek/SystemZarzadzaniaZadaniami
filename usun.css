@@ -17,3 +17,13 @@ span {
     flex-direction: row;
     gap: 20px;
 }
+
+.greenBtn {
+    border: rgb(20, 168, 99) 1px solid;
+    background-color: rgb(25, 224, 131);
+    color: rgb(24, 24, 24);
+}
+
+.darkFont {
+    color: rgb(24, 24, 24);
+}

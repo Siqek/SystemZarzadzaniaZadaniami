@@ -51,14 +51,23 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="menu.css">
     <link rel="stylesheet" href="popup.css">
+    <link rel="stylesheet" href="zadanieForm.css">
 </head>
 <body>
     <?php include './menu.php'; ?>
     <form action="./zadanieForm.php" method="POST">
-        <input type="text" name="title" placeholder="tytuł" maxlength="100">
-        <input type="text" name="opis" placeholder="opis">
+        <input id='title' type="text" name="title" placeholder="tytuł" maxlength="100">
+        <textarea class='scroll' id='opis' name="opis" placeholder="opis" onkeypress='auto_resize(this);' onkeyup='auto_resize(this);'></textarea>
+        <br>
         <input type="submit" name="form" value="Dodaj">
     </form>
     <?php popup(); ?>
 </body>
+<script>
+    function auto_resize (element)
+    {
+        element.style.height = 'auto';
+        element.style.height = (element.scrollHeight)+'px';
+    }
+</script>
 </html>
