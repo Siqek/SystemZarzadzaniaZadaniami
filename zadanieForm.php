@@ -68,7 +68,7 @@
     function auto_resize (element)
     {
         element.style.height = 'auto';
-        element.style.height = (element.scrollHeight)+'px';
+        element.style.height = (element.scrollHeight - 8)+'px';
     }
 </script>
 </html>

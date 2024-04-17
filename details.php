@@ -50,6 +50,20 @@
         unset($_POST["selectPrac"]);
     }
 
+    #przypisanie samego siebie do zadania
+    if (isset($_POST["przypiszSiebie"]))
+    {
+        unset($_POST["przypiszSiebie"]);
+
+        $conn = newConn();
+
+        $sql = "UPDATE `zadania` SET `pracownik` = '" . $_SESSION["login"] . "' WHERE id = " . $currentID;
+
+        mysqli_query($conn, $sql);
+
+        mysqli_close($conn);
+    }
+
     #aktualizacja statusu zadania
     if (isset($_POST["stop_editing_status"]))
     {
@@ -166,7 +180,6 @@
 <body>
     <?php include "./menu.php"; ?>
     <div id='content'>
-        <!-- <a href="./listaZadan.php" class='back'>powrót</a> -->
         <span></span>
         <span class='center'>
             <div id='zadanie'>
@@ -196,7 +209,7 @@
                                         . selectStatusy("status")
                                     :   # przycisk do edycji statusu
                                         (
-                                            ((isLoggedAs('admin') || $row["pracownik"] == $_SESSION["login"]) && $row["wykonane"] == false) 
+                                            ((/*isLoggedAs('admin') || */$row["pracownik"] == $_SESSION["login"]) && $row["wykonane"] == false) 
                                             ?   "<input type='submit' value='edytuj' name='editing_status'>" 
                                             :   ''
                                         )
@@ -229,23 +242,35 @@
                         )
                     )
                     #przyciski do obslugi przypisanego pracownika do zadania (tylko dla admina)
+                    . "<form method='POST' action='./details.php'>"
                     . (
                         (isLoggedAs('admin') && $row["nazwa"] != "wykonane" && $row["wykonane"] == false)
-                        ? "<form method='POST' action='./details.php'>" . 
-                            (($row["pracownik"]) 
+                        ?   (
+                                ($row["pracownik"]) 
                                 ?   #przycisk do usuniecia przypisanego pracownika z zadania
                                     "<input type='submit' name='usunPrac' value='zwolnij' class='margin'>" 
                                 :   #przycisk do przypisywania pracownika
                                     #wyswietla gdy nie zostal jeszcze klikniety
                                     (
                                         (!isset($_POST["przypiszPrac"])) 
-                                        ? "<input type='submit' name='przypiszPrac' value='przypisz' class='margin'>"
-                                        : ''
+                                        ?   "<input type='submit' name='przypiszPrac' value='przypisz' class='margin'>
+                                            <input type='submit' name='przypiszSiebie' value='przypisz siebie' class='margin'>"
+                                        :   ''
                                     )
                             ) 
-                            . "</form>"
-                        : '' 
+                        :   (
+                            ($row["pracownik"] == $_SESSION["login"] && $row["wykonane"] == false && $row["nazwa"] != "wykonane")
+                            ?   #przycisk do wypisania się z zadania
+                                "<input type='submit' name='usunPrac' value='Wypisz się' class='margin'>"
+                            :   
+                                (
+                                    (empty($row["pracownik"]) && $row["wykonane"] == false && $row["nazwa"] != "wykonane" && (isLoggedAs('admin') || isLoggedAs('pracownik')))
+                                    ?   "<input type='submit' name='przypiszSiebie' value='przypisz siebie' class='margin'>"
+                                    :   ''
+                                )
+                            )
                     )
+                    . "</form>"
                     . "</span>
                     <div class='line'></div>
                 </span>"
